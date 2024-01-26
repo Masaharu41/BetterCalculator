@@ -16,45 +16,57 @@ Module BetterCalculator
         Dim numE2 As Integer
         Dim operation As String
         Dim operation2 As String
-        Dim leave As Boolean = False
         Do
             operation = ""
             operation2 = ""
             'writes condition to exit program as well as asks for first numerical input
             Console.WriteLine("Please enter two numbers. Press 'q' at any point to quit")
-            Console.WriteLine("Enter Number 1:")
-            num1 = Console.ReadLine()
-            'try catch to verify that num1 is an integer
-            Try
-                numE1 = CInt(num1)
-            Catch ex As Exception
-                If num1 = "q" Then
-                    leave = True
+            Do
+                Console.WriteLine("Enter Number 1:")
+                num1 = Console.ReadLine()
+                'try catch to verify that num1 is an integer
+                Try
+                    numE1 = CInt(num1)
                     Exit Do
-                    'when user inputs a "q" exits to next loop
-                Else
-                    Console.WriteLine($"You entered {num1}. Please input a whole number")
-                End If
+                Catch ex As Exception
+                    If num1 = "q" Then
+                        Exit Do
+                        'when user inputs a "q" exits to next loop
+                    Else
+                        Console.WriteLine($"You entered {num1}. Please input a whole number")
+                    End If
 
-            End Try
+                End Try
+            Loop
             'reports the prior input while asking for the next number
-            Console.WriteLine($"You have Entered {numE1}")
-            Console.WriteLine("Enter Number 2:")
-            num2 = Console.ReadLine()
-            'try catch to verify that num1 is an integer
-            Try
-                numE2 = CInt(num2)
-            Catch ex As Exception
-                If num2 = "q" Then
-                    leave = True
-                    'when user inputs "q" exits to next loop
-                    Exit Do
-                Else
-                    Console.WriteLine($"You entered {num2}. Please input a whole number")
-                End If
-            End Try
+            If num1 = "q" Then
+                Exit Do
+            Else
+                Console.WriteLine($"You have Entered {numE1}")
+            End If
 
-            Console.WriteLine($"You have Entered {numE2}")
+            'try catch to verify that num1 is an integer
+            Do
+                Console.WriteLine("Enter Number 2:")
+                num2 = Console.ReadLine()
+                Try
+                    numE2 = CInt(num2)
+                    Exit Do
+                Catch ex As Exception
+                    If num2 = "q" Then
+                        'when user inputs "q" exits to next loop
+                        Exit Do
+                    Else
+                        Console.WriteLine($"You entered {num2}. Please input a whole number")
+                    End If
+                End Try
+            Loop
+            If num2 = "q" Then
+                Exit Do
+            Else
+                Console.WriteLine($"You have Entered {numE2}")
+            End If
+
 
             Do
                 'asks user to select which operation to perform on the numbers inputed prior
@@ -75,7 +87,6 @@ Module BetterCalculator
                     Case "4"
                         operation = "/"
                     Case "q"
-                        leave = True
                         Exit Do
                     Case Else
                         Console.WriteLine("Please enter a valid selection")
@@ -101,7 +112,7 @@ Module BetterCalculator
                 End If
             End If
 
-        Loop Until leave
+        Loop
 
         'gives message to user as well as condition to close console
         Console.WriteLine("Have a Nice Day!")
