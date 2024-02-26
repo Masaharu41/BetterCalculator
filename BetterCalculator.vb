@@ -80,18 +80,22 @@ Module BetterCalculator
                 Select Case operation
                     Case "1"
                         operation = "+"
+                        Exit Do
                     Case "2"
                         operation = "-"
+                        Exit do
                     Case "3"
                         operation = "*"
+                        Exit Do
                     Case "4"
                         operation = "/"
+                        Exit Do
                     Case "q"
                         Exit Do
                     Case Else
                         Console.WriteLine("Please enter a valid selection")
                 End Select
-            Loop While operation = ""
+            Loop
 
             If operation = "q" Then
                 Exit Do
